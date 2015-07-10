@@ -39,6 +39,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+        if ($e instanceof BaseException)
+            return response($e->errorMessage(), $e::$base_code);
+        else
+            return response($e->getMessage(), 500);
     }
 }

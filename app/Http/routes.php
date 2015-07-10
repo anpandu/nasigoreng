@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['namespace' => 'ORM'], function(){
+
+	Route::resource('category', 'CategoryController');
+	Route::get('category/{id}/posts', 'CategoryController@getPosts');
+
+});
