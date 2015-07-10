@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ORM\Post;
+use App\Models\ORM\Category;
 
 
 /**
@@ -21,61 +22,27 @@ class PostTest extends TestCase {
 	 */
 	public function testAdd()
 	{
+		$cat = Category::create(['title' => 'uncategorized']);
+
 		$obj = new Post;
 		$obj->title = 'title';
 		$obj->content = 'content';
 		$obj->slug = 'slug';
 		$obj->header_img = 'header_img';
+		$obj->category_id = $cat->id;
 		$saved = $obj->save();
 
 		$this->assertTrue($saved);
-		if ($saved) {
-			$obj_2 = Post::find($obj->id);
-			if ($obj_2 !== null) {
-				$this->assertEquals($obj, $obj_2);
-			}
-		}
-	}
-
-	// /**
-	//  * Tes menambahkan Post dan relasinya dengan User
-	//  */
-	// public function testUserRelation()
-	// {
-	// 	$users = [];
-
-	// 	$obj = new User;
-	// 	$obj->email = 'email';
-	// 	$obj->username = 'username2';
-	// 	$obj->password = 'password';
-	// 	$obj->access_token = 'access_token';
-	// 	$obj->refresh_token = 'refresh_token';
-	// 	$obj->profile_picture = 'profile_picture';
-	// 	$obj->full_name = 'full_name';
-	// 	$obj->quote = 'quote';
-	// 	$obj->location = 'location';
-	// 	$obj->phone = 'phone';
-	// 	$obj->education_id = '1';
 		
-	// 	$saved = $obj->save();
+		$obj_2 = Post::find($obj->id);
+		if ($obj_2 !== null) {
+			$this->assertEquals($obj, $obj_2);
+		}
 
-	// 	$users[] = $obj;
-
-	// 	$obj = new Post;
-	// 	$obj->title = 'title';
-	// 	$saved = $obj->save();
-
-	// 	$this->assertTrue($saved);
-	// 	if ($saved) {
-	// 		$ids = \Illuminate\Support\Collection::make($users)->map(function($user){ return $user->id;})->toArray();
-	// 		$obj->users()->attach($ids);
-	// 		$temp_users = $obj->users()->get();
-	// 		$this->assertEquals(count($users), count($temp_users));
-	// 		foreach ($temp_users as $key => $temp_user) {
-	// 			$this->assertEquals($temp_user->attributesToArray(), $users[$key]->attributesToArray());
-	// 		}
-	// 	}
-	// }
+		$cat_2 = $obj_2->getCategory();
+		$this->assertEquals($cat->id, $cat_2->id);
+		$this->assertEquals(1, $cat_2->posts()->count());
+	}
 
 	// /**
 	//  * Tes menambahkan Post dan relasinya dengan Permission

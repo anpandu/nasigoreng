@@ -20,4 +20,14 @@ class Post extends Model
      */
     protected $fillable = ['title', 'slug', 'content', 'header_img'];
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\ORM\Category');
+    }
+
+    public function getCategory()
+    {
+        return $this->category()->get()->first();
+    }
+
 }
