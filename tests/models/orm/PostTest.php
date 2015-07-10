@@ -28,7 +28,7 @@ class PostTest extends TestCase {
 		$obj->title = 'title';
 		$obj->content = 'content';
 		$obj->slug = 'slug';
-		$obj->header_img = 'header_img';
+		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
 		$saved = $obj->save();
 

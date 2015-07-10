@@ -21,4 +21,6 @@ Route::group(['namespace' => 'ORM'], function(){
 	Route::resource('category', 'CategoryController');
 	Route::get('category/{id}/posts', 'CategoryController@getPosts');
 
+	Route::resource('post', 'PostController');
+
 });
