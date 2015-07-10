@@ -1,0 +1,40 @@
+<?php
+
+class TestCase extends Illuminate\Foundation\Testing\TestCase
+{
+    /**
+     * The base URL to use while testing the application.
+     *
+     * @var string
+     */
+    protected $baseUrl = 'http://localhost';
+
+    /**
+     * Creates the application.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../bootstrap/app.php';
+
+        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        return $app;
+    }
+
+    public function cetak($value)
+    {
+        fwrite(STDERR, print_r($value, TRUE));
+    }
+
+    /**
+     * Setup Environtment dan database.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        self::artisan('migrate:refresh', ['--database' => 'sqlite']);
+        $this->app['config']->set('database.default','sqlite'); 
+    }
+}
