@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <title>Nasi Goreng</title>
+    <title>Marketing Dashboard</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 	<script src="{{ asset('/plugins/jQuery/jQuery-2.1.3.min.js') }}"></script>
@@ -14,9 +14,6 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<!-- Theme style -->
 	<link href="{{ asset('dist/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
-	<style type="text/css">
-		.register-page{background-image: url({{ asset('dist/img/East_Bandung_skyline.jpg') }});}
-	</style>
 	<!-- iCheck -->
 	<!-- <link href="{{ asset('plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" /> -->
 
@@ -30,28 +27,18 @@
 <body class="register-page">
 	<div class="register-box">
 		<div class="register-logo">
-			<a href="#"><b>Nasi</b>Goreng</a>
+			<a href="#"><b>Marketing</b>Dashboard</a>
 		</div>
 
 		<div class="register-box-body">
-			@if (count($errors) > 0)
-				<div class="alert alert-danger">
-					<strong>Whoops!</strong> There were some problems with your input.<br><br>
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-				</div>
-			@endif
 			<p class="login-box-msg">Administrator only</p>
-			<form method="POST" action="{{ url('/auth/login') }}">
+			<form action="{{url('/cms/login')}}" method="POST">
 				<div class="form-group has-feedback">
-					<input name="email" type="text" class="form-control" placeholder="Username"/>
+					<input name="login_username" type="text" class="form-control" placeholder="Username"/>
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input name="password" type="password" class="form-control" placeholder="Password"/>
+					<input name="login_password" type="password" class="form-control" placeholder="Password"/>
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">

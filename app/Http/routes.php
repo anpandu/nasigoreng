@@ -11,12 +11,6 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function(){
-	// Route::get('/', function () {
-	//     return view('welcome');
-	// });
-
-});
 
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
@@ -36,5 +30,27 @@ Route::group(['namespace' => 'ORM'], function(){
 	
 	Route::resource('tag', 'TagController');
 	Route::get('tag/{id}/posts', 'TagController@getPosts');
+
+});
+
+
+Route::group(['namespace' => 'CMS'], function()
+{
+	Route::get('/', function(){ return redirect('/dashboard');});
+
+	Route::group(['middleware' => 'auth'], function()
+	{
+		Route::get('/dashboard', 'CMSController@dashboard');
+
+		// Route::get('/project', 'ProjectCMSController@index');
+		// Route::get('/project/edit/{id}', 'ProjectCMSController@edit');
+		// Route::post('/project/update/{id}', 'ProjectCMSController@update');
+
+		// Route::get('/widget', 'WidgetCMSController@index');
+		// Route::get('/widget/edit/{id}', 'WidgetCMSController@edit');
+		// Route::post('/widget/update/{id}', 'WidgetCMSController@update');
+		// Route::get('/widget/delete/{id}', 'WidgetCMSController@delete');
+
+	});
 
 });
