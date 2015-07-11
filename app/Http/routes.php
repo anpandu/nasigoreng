@@ -18,9 +18,12 @@ Route::get('/', function () {
 
 Route::group(['namespace' => 'ORM'], function(){
 
+	Route::resource('post', 'PostController');
+
 	Route::resource('category', 'CategoryController');
 	Route::get('category/{id}/posts', 'CategoryController@getPosts');
-
-	Route::resource('post', 'PostController');
+	
+	Route::resource('tag', 'TagController');
+	Route::get('tag/{id}/posts', 'TagController@getPosts');
 
 });

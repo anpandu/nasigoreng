@@ -30,4 +30,9 @@ class Post extends Model
         return $this->category()->get()->first();
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\ORM\Tag');
+    }
+
 }

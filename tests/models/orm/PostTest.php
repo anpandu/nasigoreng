@@ -2,7 +2,9 @@
 
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
+use App\Models\ORM\Tag;
 
+use Illuminate\Support\Collection;
 
 /**
  * Tes model Post
@@ -44,28 +46,31 @@ class PostTest extends TestCase {
 		$this->assertEquals(1, $cat_2->posts()->count());
 	}
 
-	// /**
-	//  * Tes menambahkan Post dan relasinya dengan Permission
-	//  */
-	// public function testPermissionRelation()
-	// {
-	// 	$permissions = [];
-	// 	$permissions[] = Permission::create(['name' => 'name']);
+	/**
+	 * Tes menambahkan Post dan relasinya dengan Tag
+	 */
+	public function testTagRelation()
+	{
+		$cat = Category::create(['title' => 'uncategorized']);
 
-	// 	$obj = new Post;
-	// 	$obj->title = 'title';
-	// 	$saved = $obj->save();
+		$tags = [];
+		$tags[] = Tag::create(['title' => 'title']);
 
-	// 	$this->assertTrue($saved);
-	// 	if ($saved) {
-	// 		$ids = \Illuminate\Support\Collection::make($permissions)->map(function($permission){ return $permission->id;})->toArray();
-	// 		$obj->permissions()->attach($ids);
-	// 		$temp_permissions = $obj->permissions()->get();
-	// 		$this->assertEquals(count($permissions), count($temp_permissions));
-	// 		foreach ($temp_permissions as $key => $temp_permission) {
-	// 			$this->assertEquals($temp_permission->attributesToArray(), $permissions[$key]->attributesToArray());
-	// 		}
-	// 	}
-	// }
+		$obj = new Post;
+		$obj->title = 'title';
+		$obj->category_id = $cat->id;
+		$saved = $obj->save();
+
+		$this->assertTrue($saved);
+		if ($saved) {
+			$ids = Collection::make($tags)->map(function($tag){ return $tag->id;})->toArray();
+			$obj->tags()->attach($ids);
+			$temp_tags = $obj->tags()->get();
+			$this->assertEquals(count($tags), count($temp_tags));
+			foreach ($temp_tags as $key => $temp_tag) {
+				$this->assertEquals($temp_tag->id, $tags[$key]->id);
+			}
+		}
+	}
 
 }
