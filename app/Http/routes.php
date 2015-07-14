@@ -46,6 +46,10 @@ Route::group(['namespace' => 'CMS', 'prefix' => 'cms'], function()
 		Route::get('/post/edit/{id}', 'PostCMSController@edit');
 		Route::post('/post/update/{id}', 'PostCMSController@update');
 
+		Route::get('/category', 'CategoryCMSController@index');
+		Route::get('/category/edit/{id}', 'CategoryCMSController@edit');
+		Route::post('/category/update/{id}', 'CategoryCMSController@update');
+
 	});
 
 });
