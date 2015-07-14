@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{url('/dashboard')}}" class="logo"><b>Nasi</b>Goreng</a>
+    <a href="{{url('/cms/dashboard')}}" class="logo"><b>Nasi</b>Goreng</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
