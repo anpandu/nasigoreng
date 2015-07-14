@@ -50,6 +50,10 @@ Route::group(['namespace' => 'CMS', 'prefix' => 'cms'], function()
 		Route::get('/category/edit/{id}', 'CategoryCMSController@edit');
 		Route::post('/category/update/{id}', 'CategoryCMSController@update');
 
+		Route::get('/tag', 'TagCMSController@index');
+		Route::get('/tag/edit/{id}', 'TagCMSController@edit');
+		Route::post('/tag/update/{id}', 'TagCMSController@update');
+
 	});
 
 });
