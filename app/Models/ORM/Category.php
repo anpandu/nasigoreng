@@ -25,4 +25,9 @@ class Category extends Model
         return $this->hasMany('App\Models\ORM\Post');
     }
 
+    public function simpleAttributes()
+    {
+        return parent::toArray();
+    }
+
 }

@@ -2,6 +2,7 @@
 
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
+use App\Models\ORM\Tag;
 
 class PostCtrlTest extends TestCase {
 
@@ -89,19 +90,26 @@ class PostCtrlTest extends TestCase {
 
 	public function testUpdate()
 	{
+		$tags[] = Tag::create(['title' => 'tagx']);
+		$tags[] = Tag::create(['title' => 'tagy']);
+		$tags[] = Tag::create(['title' => 'tagz']);
+
 		// tes pemanggilan update sukses
 		$params = $this->setUpParams();
 		$params['id'] = $this->obj->id.'000';
+		$params['tags'] = array_map(function($x){return $x->id;}, $tags);
 		$response = $this->call('PUT', '/'.self::$endpoint.'/'.$this->obj->id, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
 
 		// tes apakah hasil return adalah yang sesuai
+		unset($params['tags']);
 		foreach ($params as $key => $val) {
 			$this->assertArrayHasKey($key, $result);
 			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at'))
 				$this->assertEquals($val, $result[$key]);
-		}
+		}		
+		$this->assertEquals(3, count($result['tags']));
 
 		// tes tak ada yang dicari
 		$response = $this->call('GET', '/'.self::$endpoint.'/696969', $params);

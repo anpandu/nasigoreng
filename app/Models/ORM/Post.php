@@ -35,4 +35,17 @@ class Post extends Model
         return $this->belongsToMany('App\Models\ORM\Tag');
     }
 
+    public function simpleAttributes()
+    {
+        return parent::toArray();
+    }
+
+    public function toArray()
+    {
+        $result = parent::toArray();
+        $result['category'] = $this->getCategory()->simpleAttributes();
+        $result['tags'] = $this->tags()->get()->map(function($x){return $x->simpleAttributes();})->toArray();
+        return $result;
+    }
+
 }

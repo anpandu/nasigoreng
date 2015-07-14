@@ -83,9 +83,18 @@ class PostController extends Controller {
     public function update($id)
     {
         $post = Post::find($id);
+        $params = Request::all();
+        $tags = $params['tags'];
+        unset($params['tags']);        
+
         if ($post) {
-            foreach (Request::all() as $key => $value)
+            
+            foreach ($params as $key => $value)
                 $post->{$key} = $value;
+
+            $post->tags()->detach();
+            $post->tags()->attach($tags);
+
             if ($post->save())
                 return $post;
         }

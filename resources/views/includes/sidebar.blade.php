@@ -17,19 +17,19 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <li>
-                <a href="{{ url('/post') }}">
+                <a href="{{ url('/cms/post') }}">
                 <i class="fa fa-pencil"></i> <span>Post</span>
                 </a>
             </li>
 
             <li>
-                <a href="{{ url('/category') }}">
+                <a href="{{ url('/cms/category') }}">
                 <i class="fa fa-sitemap"></i> <span>Category</span>
                 </a>
             </li>
 
             <li>
-                <a href="{{ url('/tag') }}">
+                <a href="{{ url('/cms/tag') }}">
                 <i class="fa fa-tag"></i> <span>Tag</span>
                 </a>
             </li>

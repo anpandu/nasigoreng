@@ -16,5 +16,13 @@ class CategorySeeder extends Seeder
             'title' => 'uncategorized',
             'slug' => 'uncategorized'
         ));
+        Category::create(array(
+            'title' => 'story',
+            'slug' => 'story'
+        ));
+        Category::create(array(
+            'title' => 'geeks',
+            'slug' => 'geeks'
+        ));
     }
 }

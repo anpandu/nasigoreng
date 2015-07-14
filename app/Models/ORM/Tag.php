@@ -25,4 +25,9 @@ class Tag extends Model
         return $this->belongsToMany('App\Models\ORM\Post');
     }
 
+    public function simpleAttributes()
+    {
+        return parent::toArray();
+    }
+
 }
