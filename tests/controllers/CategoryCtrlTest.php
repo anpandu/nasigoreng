@@ -2,6 +2,7 @@
 
 use App\Models\ORM\Category;
 use App\Models\ORM\Post;
+use App\Models\ORM\User;
 
 class CategoryCtrlTest extends TestCase {
 
@@ -125,7 +126,8 @@ class CategoryCtrlTest extends TestCase {
 
 	public function testGetPosts()
 	{
-		$post = Post::create(['title' => 'test_category', 'category_id' => $this->obj->id]);
+		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
+		$post = Post::create(['title' => 'test_category', 'category_id' => $this->obj->id, 'user_id' => $user->id]);
 
 		// tes pemanggilan getPosts sukses
 		$response = $this->call('GET', '/'.self::$endpoint.'/'.$this->obj->id.'/posts');

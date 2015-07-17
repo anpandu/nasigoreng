@@ -3,6 +3,7 @@
 use App\Models\ORM\Tag;
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
+use App\Models\ORM\User;
 
 class TagCtrlTest extends TestCase {
 
@@ -127,7 +128,8 @@ class TagCtrlTest extends TestCase {
 	public function testGetPosts()
 	{
 		$cat = Category::create(['title' => 'uncategorized']);
-		$post = Post::create(['title' => 'test_tag', 'category_id' => $cat->id]);
+		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
+		$post = Post::create(['title' => 'test_tag', 'category_id' => $cat->id, 'user_id' => $user->id]);
 		$this->obj->posts()->attach($post->id);
 
 		// tes pemanggilan getPosts sukses

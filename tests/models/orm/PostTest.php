@@ -3,6 +3,7 @@
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
 use App\Models\ORM\Tag;
+use App\Models\ORM\User;
 
 use Illuminate\Support\Collection;
 
@@ -25,6 +26,7 @@ class PostTest extends TestCase {
 	public function testAdd()
 	{
 		$cat = Category::create(['title' => 'uncategorized']);
+		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
 
 		$obj = new Post;
 		$obj->title = 'title';
@@ -32,6 +34,7 @@ class PostTest extends TestCase {
 		$obj->slug = 'slug';
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
+		$obj->user_id = $user->id;
 		$saved = $obj->save();
 
 		$this->assertTrue($saved);
@@ -55,6 +58,7 @@ class PostTest extends TestCase {
 	public function testTagRelation()
 	{
 		$cat = Category::create(['title' => 'uncategorized']);
+		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
 
 		$tags = [];
 		$tags[] = Tag::create(['title' => 'title']);
@@ -62,6 +66,7 @@ class PostTest extends TestCase {
 		$obj = new Post;
 		$obj->title = 'title';
 		$obj->category_id = $cat->id;
+		$obj->user_id = $user->id;
 		$saved = $obj->save();
 
 		$this->assertTrue($saved);

@@ -3,6 +3,7 @@
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
 use App\Models\ORM\Tag;
+use App\Models\ORM\User;
 
 class PostCtrlTest extends TestCase {
 
@@ -24,12 +25,14 @@ class PostCtrlTest extends TestCase {
 	private function setUpObj() 
 	{
 		$cat = Category::create(['title' => 'uncategorized']);
+		$user = User::create(['name' => 'user', 'email' => rand(0,1000), 'password' => 'user', 'picture' => 'user']);
 		$obj = new Post;
 		$obj->title = 'title';
 		$obj->slug = 'slug';
 		$obj->content = 'content';
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
+		$obj->user_id = $user->id;
 		$obj->save();
 		return $obj;
 	}

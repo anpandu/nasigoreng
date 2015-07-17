@@ -3,6 +3,7 @@
 use App\Models\ORM\Tag;
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
+use App\Models\ORM\User;
 
 use Illuminate\Support\Collection;
 
@@ -43,9 +44,10 @@ class TagTest extends TestCase {
 	public function testPostRelation()
 	{
 		$cat = Category::create(['title' => 'uncategorized']);
+		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
 
 		$posts = [];
-		$posts[] = Post::create(['title' => 'title', 'category_id' => $cat->id]);
+		$posts[] = Post::create(['title' => 'title', 'category_id' => $cat->id, 'user_id' => $user->id]);
 
 		$obj = new Tag;
 		$obj->title = 'title';
