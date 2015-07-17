@@ -13,9 +13,9 @@ class UserSeeder extends Seeder {
 	public function run()
 	{
 		User::create(array(
-			'name' => 'pandu',
-			'email' => 'anpandumail@gmail.com',
-			'password' => crypt('pandu'),
+			'name' => 'admin',
+			'email' => 'admin@yoursite.com',
+			'password' => crypt('secret123'),
 			'picture' => 'http://0.gravatar.com/avatar/4c35d531244ef10e5f2dcc9ee36e2c8c?size=400'
 		));
 	}
