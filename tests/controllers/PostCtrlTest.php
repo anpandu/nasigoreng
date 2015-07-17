@@ -26,6 +26,7 @@ class PostCtrlTest extends TestCase {
 	{
 		$slug = 'slug_' . rand(0,10000);
 		$cat = Category::create(['title' => $slug, 'slug' => $slug]);
+		$tag = Tag::create(['title' => $slug, 'slug' => $slug]);
 		$user = User::create(['name' => 'user', 'email' => rand(0,10000), 'password' => 'user', 'picture' => 'user']);
 		$obj = new Post;
 		$obj->title = 'title';
@@ -34,6 +35,8 @@ class PostCtrlTest extends TestCase {
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
 		$obj->user_id = $user->id;
+		$obj->save();
+		$obj->tags()->attach($tag->id);
 		$obj->save();
 		return $obj;
 	}
@@ -154,8 +157,28 @@ class PostCtrlTest extends TestCase {
 		// tes apakah hasil return adalah yang sesuai
 		foreach ($this->obj->attributesToArray() as $attr => $attr_val)
 			$this->assertArrayHasKey($attr, $result[0]);
-		foreach ($result as $key => $r)
+		foreach ($result as $r)
 			$this->assertEquals($slug, $r['category']['slug']);
+	}
+
+	public function testTag()
+	{
+		// tes pemanggilan category sukses
+		$obj2 = $this->setUpObj();
+		$slug = $this->obj->tags()->first()->slug;
+		$response = $this->call('GET', '/'.self::$endpoint.'/tag/'.$slug);
+		$this->assertEquals(200, $response->getStatusCode());
+		$result = $response->getOriginalContent()->toArray();
+		$this->assertTrue(is_array($result));
+		$this->assertTrue(count($result)>0);
+
+		// tes apakah hasil return adalah yang sesuai
+		foreach ($this->obj->attributesToArray() as $attr => $attr_val)
+			$this->assertArrayHasKey($attr, $result[0]);
+		foreach ($result as $r) {
+			$slugs = array_map(function($x) {return $x['slug'];}, $r['tags']);
+			$this->assertTrue(in_array($slug, $slugs));
+		}
 	}
 
 }

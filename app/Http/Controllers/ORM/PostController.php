@@ -7,6 +7,7 @@ use Exception;
 
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
+use App\Models\ORM\Tag;
 
 use App\Http\Controllers\Controller;
 use App\Exceptions\CrudException;
@@ -74,6 +75,18 @@ class PostController extends Controller {
     {
         $category = Category::where('slug', '=', $slug)->first();
         $posts = Post::where('category_id', '=', $category->id)->get();
+        return $posts;
+    }
+
+    /**
+    * Display the specified Post by Category.
+    *
+    * @param  int  $id
+    * @return Response
+    */
+    public function tag($slug)
+    {
+        $posts = Tag::where('slug', '=', $slug)->first()->posts()->get();
         return $posts;
     }
 

@@ -30,11 +30,13 @@
 
 					res = json.map( function(item) {
 
-						category = item['category']['title'];
-						link = "{{url('cms/post/category')}}/" + category;
-						item['category'] = '<a href="' + link + '">' + category + '</a>';
+						link = "{{url('cms/post/category')}}/" + item['category']['slug'];
+						item['category'] = '<a href="' + link + '">' + item['category']['title'] + '</a>';
 
-						tag_titles = item['tags'].map(function(x){return x['title'];});
+						tag_titles = item['tags'].map(function(x){
+							link = "{{url('cms/post/tag')}}/" + x['slug'];
+							return '<a href="' + link + '">' + x['title'] + '</a>';
+						});
 						item['tags'] = (item['tags'].length>0) ? tag_titles.join(', ') : '-';
 
 						link = "{{url('cms/post/edit')}}/" + item['id'];

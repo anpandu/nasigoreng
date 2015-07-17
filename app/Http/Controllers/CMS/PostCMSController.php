@@ -32,6 +32,18 @@ class PostCMSController extends Controller {
 	}
 
 	/**
+	 * Halaman CMS Post by Tag
+	 * @return Response
+	 */
+	public function tag($slug)
+	{
+		$data = [
+			'endpoint' => 'post/tag/' . $slug
+		];
+		return view('cms.post.post')->with($data);
+	}
+
+	/**
 	 * Halaman CMS Post Edit
 	 * @return Response
 	 */
