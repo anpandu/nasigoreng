@@ -6,6 +6,7 @@ use Request;
 use Exception;
 
 use App\Models\ORM\Post;
+use App\Models\ORM\Category;
 
 use App\Http\Controllers\Controller;
 use App\Exceptions\CrudException;
@@ -61,6 +62,19 @@ class PostController extends Controller {
             return $post; 
         } else
         throw new CrudException('post:show');
+    }
+
+    /**
+    * Display the specified Post by Category.
+    *
+    * @param  int  $id
+    * @return Response
+    */
+    public function category($slug)
+    {
+        $category = Category::where('slug', '=', $slug)->first();
+        $posts = Post::where('category_id', '=', $category->id)->get();
+        return $posts;
     }
 
     /**

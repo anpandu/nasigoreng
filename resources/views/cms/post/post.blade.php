@@ -25,15 +25,18 @@
 	$(document).ready(function() {
 	    var table = $('#dt').dataTable( {
 	    	"ajax": {
-				"url": "{{url('post')}}",
+				"url": "{{url($endpoint)}}",
 				"dataSrc": function ( json ) {
 
 					res = json.map( function(item) {
 
-						item['category'] = item['category']['title'];
+						category = item['category']['title'];
+						link = "{{url('cms/post/category')}}/" + category;
+						item['category'] = '<a href="' + link + '">' + category + '</a>';
 
 						tag_titles = item['tags'].map(function(x){return x['title'];});
 						item['tags'] = (item['tags'].length>0) ? tag_titles.join(', ') : '-';
+
 						link = "{{url('cms/post/edit')}}/" + item['id'];
 						item['tools'] = '<a href="' + link + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
 

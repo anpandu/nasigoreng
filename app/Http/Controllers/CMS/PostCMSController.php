@@ -13,7 +13,22 @@ class PostCMSController extends Controller {
 	 */
 	public function index()
 	{
-		return view('cms.post.post');
+		$data = [
+			'endpoint' => 'post'
+		];
+		return view('cms.post.post')->with($data);
+	}
+
+	/**
+	 * Halaman CMS Post by Category
+	 * @return Response
+	 */
+	public function category($slug)
+	{
+		$data = [
+			'endpoint' => 'post/category/' . $slug
+		];
+		return view('cms.post.post')->with($data);
 	}
 
 	/**

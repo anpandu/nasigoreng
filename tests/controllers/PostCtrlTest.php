@@ -24,8 +24,9 @@ class PostCtrlTest extends TestCase {
 
 	private function setUpObj() 
 	{
-		$cat = Category::create(['title' => 'uncategorized']);
-		$user = User::create(['name' => 'user', 'email' => rand(0,1000), 'password' => 'user', 'picture' => 'user']);
+		$slug = 'slug_' . rand(0,10000);
+		$cat = Category::create(['title' => $slug, 'slug' => $slug]);
+		$user = User::create(['name' => 'user', 'email' => rand(0,10000), 'password' => 'user', 'picture' => 'user']);
 		$obj = new Post;
 		$obj->title = 'title';
 		$obj->slug = 'slug';
@@ -137,6 +138,24 @@ class PostCtrlTest extends TestCase {
 			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at'))
 				$this->assertEquals($val, $result[$key]);
 		}
+	}
+
+	public function testCategory()
+	{
+		// tes pemanggilan category sukses
+		$obj2 = $this->setUpObj();
+		$slug = $this->obj->category()->first()->slug;
+		$response = $this->call('GET', '/'.self::$endpoint.'/category/'.$slug);
+		$this->assertEquals(200, $response->getStatusCode());
+		$result = $response->getOriginalContent()->toArray();
+		$this->assertTrue(is_array($result));
+		$this->assertTrue(count($result)>0);
+
+		// tes apakah hasil return adalah yang sesuai
+		foreach ($this->obj->attributesToArray() as $attr => $attr_val)
+			$this->assertArrayHasKey($attr, $result[0]);
+		foreach ($result as $key => $r)
+			$this->assertEquals($slug, $r['category']['slug']);
 	}
 
 }

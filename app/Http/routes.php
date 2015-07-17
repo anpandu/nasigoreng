@@ -24,6 +24,7 @@ Route::controllers([
 Route::group(['namespace' => 'ORM'], function(){
 
 	Route::resource('post', 'PostController');
+	Route::get('post/category/{slug}', 'PostController@category');
 
 	Route::resource('category', 'CategoryController');
 	Route::get('category/{id}/posts', 'CategoryController@getPosts');
@@ -43,6 +44,7 @@ Route::group(['namespace' => 'CMS', 'prefix' => 'cms'], function()
 		Route::get('/dashboard', 'CMSController@dashboard');
 
 		Route::get('/post', 'PostCMSController@index');
+		Route::get('/post/category/{slug}', 'PostCMSController@category');
 		Route::get('/post/edit/{id}', 'PostCMSController@edit');
 		Route::post('/post/update/{id}', 'PostCMSController@update');
 
