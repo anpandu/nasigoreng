@@ -3,6 +3,7 @@
 use Config;
 use Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 
 class PostCMSController extends Controller {
@@ -44,6 +45,23 @@ class PostCMSController extends Controller {
 	}
 
 	/**
+	 * Halaman CMS Post Add
+	 * @return Response
+	 */
+	public function add()
+	{
+		$tags = json_decode(@file_get_contents(url('/tag')));
+		$categories = json_decode(@file_get_contents(url('/category')));
+
+		$data = [
+			'user_id' => Auth::user()->id, 
+			'categories' => $categories, 
+			'tags' => $tags
+		];
+		return view('cms.post.post_add')->with($data);
+	}
+
+	/**
 	 * Halaman CMS Post Edit
 	 * @return Response
 	 */
@@ -77,6 +95,19 @@ class PostCMSController extends Controller {
 	 * Post Update
 	 * @return Response
 	 */
+	public function store()
+	{
+		$params = Request::all();
+		$url = url('/post/');
+		$this->pos($url, $params);
+		
+		return redirect('cms/post');
+	}
+
+	/**
+	 * Post Update
+	 * @return Response
+	 */
 	public function update($id)
 	{
 		$params = Request::all();
@@ -84,6 +115,20 @@ class PostCMSController extends Controller {
 		$this->put($url, $params);
 		
 		return redirect('cms/post');
+	}
+
+	public function pos($url, $fields)
+	{
+	    $post_field_string = http_build_query($fields, '', '&');
+	    $ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field_string);
+		$response = curl_exec($ch);
+		curl_close ($ch);
+	    return $response;
 	}
 
 	public function put($url, $fields)

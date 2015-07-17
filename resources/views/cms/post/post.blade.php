@@ -18,7 +18,11 @@
 	        </thead>
 	    </table>
 	</div>
-	<div class="box-footer"></div>
+	<div class="box-footer">
+		<a href="{{url('cms/post/add')}}">
+			<button class="btn btn-primary btn-block">ADD</button>
+		</a>
+	</div>
 </div>
 
 <script type="text/javascript">

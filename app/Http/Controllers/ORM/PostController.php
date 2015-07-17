@@ -43,7 +43,11 @@ class PostController extends Controller {
     public function store()
     {
         $post = new Post(Request::all());
+        $params = Request::all();
+        $tags = $params['tags']; 
+
         if ($post->save()) {
+            $post->tags()->attach($tags);
             $params = Request::all();
             return $post;
         } else
