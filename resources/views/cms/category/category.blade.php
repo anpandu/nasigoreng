@@ -4,22 +4,6 @@
 
 <div class="box">
 	<div class="box-header with-border">
-		<h3 class="box-title">Show Categories</h3>
-	</div>
-	<div class="box-body">
-		<table id="dt" class="display" cellspacing="0" width="100%">
-	        <thead>
-	                <th>ID</th>
-	                <th>Title</th>
-	                <th>Tools</th>
-	        </thead>
-	    </table>
-	</div>
-	<div class="box-footer"></div>
-</div>
-
-<div class="box">
-	<div class="box-header with-border">
 		<h3 class="box-title">Add Category</h3>
 	</div>
 	<div class="box-body">
@@ -31,6 +15,22 @@
                 </span>
             </div>
 		</form>
+	</div>
+	<div class="box-footer"></div>
+</div>
+
+<div class="box">
+	<div class="box-header with-border">
+		<h3 class="box-title">Show Categories</h3>
+	</div>
+	<div class="box-body">
+		<table id="dt" class="display" cellspacing="0" width="100%">
+	        <thead>
+	                <th>ID</th>
+	                <th>Title</th>
+	                <th>Tools</th>
+	        </thead>
+	    </table>
 	</div>
 	<div class="box-footer"></div>
 </div>
