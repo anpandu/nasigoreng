@@ -2,7 +2,8 @@
 
 @section('content')
 
-
+<link href="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
 
 <div class="box">
 	<div class="box-header with-border">
@@ -30,12 +31,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Content</label>
-				<div class="col-sm-10">
-					<textarea name="content" id="input_content" placeholder="Content" class="form-control" rows="5">{{$post->content}}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="input_title" class="col-sm-2 control-label">Categories</label>
 				<div class="col-sm-10">
 					<select name="category_id" class="form-control">
@@ -59,6 +54,12 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="input_title" class="col-sm-2 control-label">Content</label>
+				<div class="col-sm-10">
+					<textarea name="content" id="input_content" placeholder="Content" class="form-control" rows="20">{{$post->content}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">EDIT</button>
 				</div>
@@ -67,5 +68,9 @@
 	</div>
 	<div class="box-footer"></div>
 </div>
+
+<script type="text/javascript">
+	$('#input_content').wysihtml5();
+</script>
 
 @endsection
