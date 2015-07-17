@@ -44,7 +44,9 @@
 						item['tags'] = (item['tags'].length>0) ? tag_titles.join(', ') : '-';
 
 						link = "{{url('cms/post/edit')}}/" + item['id'];
-						item['tools'] = '<a href="' + link + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+						tool_edit = '<a href="' + link + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+						tool_delete = '<a href="#" id="'+item['id']+'" class="button_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+						item['tools'] = tool_edit + " " + tool_delete;
 
 
 						return item;
@@ -61,7 +63,21 @@
 	            { "data": "tags" },
 	            { "data": "created_at" },
 	            { "data": "tools" }
-	        ]
+	        ],
+	        "fnInfoCallback": function(oSettings, json) {
+	        	table = this;
+		    	$(".button_delete").click(function() {
+		    		var item_id = $(this).prop('id');
+		    		var delete_url = "{{url('post')}}/" + item_id;
+				 	$.ajax({
+			            url: delete_url,
+			            type: 'DELETE',
+			            success: function(result) {
+			            	table.api().ajax.reload();
+			            }
+			        });
+				});
+		    }
 	    });
 	});
 </script>
