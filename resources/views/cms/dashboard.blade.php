@@ -26,4 +26,12 @@
 		</div>
 	</div>
 
+	<div class="info-box bg-blue">
+		<span class="info-box-icon"><i class="fa fa-image"></i></span>
+		<div class="info-box-content">
+			<span class="info-box-text">Image</span>
+			<span class="info-box-number">0</span>
+		</div>
+	</div>
+
 @endsection
