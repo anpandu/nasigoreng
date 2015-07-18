@@ -19,21 +19,21 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Slug</label>
+				<label for="input_slug" class="col-sm-2 control-label">Slug</label>
 				<div class="col-sm-10">
 					<input name="slug" type="text" class="form-control" id="input_slug" placeholder="Slug" value="">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Image</label>
+				<label for="input_header_image" class="col-sm-2 control-label">Image</label>
 				<div class="col-sm-10">
 					<input name="header_image" type="text" class="form-control" id="input_header_image" placeholder="Image" value="">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Categories</label>
+				<label for="input_category" class="col-sm-2 control-label">Categories</label>
 				<div class="col-sm-10">
-					<select name="category_id" class="form-control">
+					<select name="category_id" class="form-control" id="input_category">
 						@foreach ($categories as $category)
 							<option value="{{$category->id}}">{{$category->title}}</option>
 						@endforeach
@@ -41,9 +41,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Tags</label>
+				<label for="input_tag" class="col-sm-2 control-label">Tags</label>
 				<div class="col-sm-10">
-					<div class="checkbox">
+					<div class="checkbox" id="input_tag">
 						@foreach ($tags as $tag)
 							<label>
 								<input type="checkbox" name="tags[]" value="{{$tag->id}}">{{$tag->title}}<br>
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Content</label>
+				<label for="input_content" class="col-sm-2 control-label">Content</label>
 				<div class="col-sm-10">
 					<textarea name="content" id="input_content" placeholder="Content" class="form-control" rows="20"></textarea>
 				</div>
