@@ -61,6 +61,10 @@ Route::group(['namespace' => 'CMS', 'prefix' => 'cms'], function()
 		Route::get('/tag/edit/{id}', 'TagCMSController@edit');
 		Route::post('/tag/update/{id}', 'TagCMSController@update');
 
+		Route::get('/image', 'ImageCMSController@index');
+		Route::get('/image/edit/{id}', 'ImageCMSController@edit');
+		Route::post('/image/update/{id}', 'ImageCMSController@update');
+
 	});
 
 });

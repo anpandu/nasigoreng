@@ -34,6 +34,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ url('/cms/image') }}">
+                <i class="fa fa-image"></i> <span>Image</span>
+                </a>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->
