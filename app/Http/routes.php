@@ -32,7 +32,8 @@ Route::group(['namespace' => 'ORM'], function(){
 	
 	Route::resource('tag', 'TagController');
 	Route::get('tag/{id}/posts', 'TagController@getPosts');
-
+	
+	Route::resource('image', 'ImageController');
 });
 
 
