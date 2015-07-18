@@ -44,7 +44,7 @@ class PostController extends Controller {
     {
         $post = new Post(Request::all());
         $params = Request::all();
-        $tags = $params['tags']; 
+        $tags = isset($params['tags']) ? $params['tags'] : [];
 
         if ($post->save()) {
             $post->tags()->attach($tags);
