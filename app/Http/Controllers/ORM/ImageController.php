@@ -4,10 +4,14 @@ namespace App\Http\Controllers\ORM;
 
 use Request;
 use Exception;
+use Storage;
+use File;
+use Carbon\Carbon;
 
 use App\Models\ORM\Image;
 
 use App\Http\Controllers\Controller;
+use App\Exceptions\FileUploadException;
 use App\Exceptions\CrudException;
 
 class ImageController extends Controller {
@@ -40,9 +44,32 @@ class ImageController extends Controller {
     */
     public function store()
     {
-        $image = new Image(Request::all());
+        // $a = '>>>|';
+        // foreach (Request::all() as $key => $value) $a .=  $key . ':::' . $value . '|';
+        // return $a;
+
+        $valid_ext = ['jpg', 'png', 'bmp', 'gif', 'jpeg'];
+
+        if (!Request::hasFile('image'))
+            throw new FileUploadException('image not found');
+        if (!Request::file('image')->isValid())
+            throw new FileUploadException('image is not valid');
+
+        $params = Request::all();
+
+        $file = $params['image'];
+        unset($params['image']);
+
+        if (!in_array($file->getClientOriginalExtension(), $valid_ext))
+            throw new FileUploadException('image type is not valid');
+
+        $file_name = Carbon::now()->format('Ymd_His_') . $params['title'] . '.' . $file->getClientOriginalExtension();
+        $file_path = 'images/';
+
+        $params['filename'] = $file_name;
+        $image = new Image($params);
         if ($image->save()) {
-            $params = Request::all();
+            Storage::put($file_path . $file_name, File::get($file));
             return $image;
         } else
         throw new CrudException('image:store');
@@ -102,8 +129,10 @@ class ImageController extends Controller {
     {
         $image = Image::find($id);
         if ($image) {
+            $file_path = 'images/';
+            $file_name = $image->filename;
             $image->delete();
-            $params = Request::all();
+            Storage::delete($file_path . $file_name);
             return $image;
         }
         throw new CrudException('image:destroy');
