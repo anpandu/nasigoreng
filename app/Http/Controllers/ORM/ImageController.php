@@ -132,7 +132,9 @@ class ImageController extends Controller {
             $file_path = 'images/';
             $file_name = $image->filename;
             $image->delete();
-            Storage::delete($file_path . $file_name);
+            try {
+                Storage::delete($file_path . $file_name);
+            } catch (Exception $e) {}
             return $image;
         }
         throw new CrudException('image:destroy');
