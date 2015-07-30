@@ -32,12 +32,10 @@ class PostTest extends TestCase {
 		$obj->title = 'Title Unimportant';
 		$obj->content = 'content';
 		$obj->description = 'description';
-		$obj->slug = 'slug';
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
 		$obj->user_id = $user->id;
 		$saved = $obj->save();
-
 		$this->assertTrue($saved);
 		
 		$obj_2 = Post::find($obj->id);
@@ -52,6 +50,25 @@ class PostTest extends TestCase {
 		$cat_2 = $obj_2->getCategory();
 		$this->assertEquals($cat->id, $cat_2->id);
 		$this->assertEquals(1, $cat_2->posts()->count());
+
+		// testing slug already exist
+		$obj_3 = new Post;
+		$obj_3->title = 'Title Unimportant';
+		$obj_3->category_id = $cat->id;
+		$obj_3->user_id = $user->id;
+		$saved = $obj_3->save();
+		$this->assertTrue($saved);
+		$this->assertEquals('title-unimportant-new', $obj_3->slug);
+
+		// testing slug already exist #2
+		$obj_3 = new Post;
+		$obj_3->title = 'Title Unimportant';
+		$obj_3->category_id = $cat->id;
+		$obj_3->user_id = $user->id;
+		$saved = $obj_3->save();
+		$saved = $obj_3->save();
+		$this->assertTrue($saved);
+		$this->assertEquals('title-unimportant-new-new', $obj_3->slug);
 	}
 
 	/**

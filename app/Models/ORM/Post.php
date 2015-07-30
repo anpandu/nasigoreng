@@ -51,7 +51,13 @@ class Post extends Model
 
     public function save(array $options = [])
     {
-        $this->slug = Str::slug($this->title);
+        $seed = $this->title;
+        do {
+            $this->slug = Str::slug($seed);
+            $exist = self::where('slug', '=', $this->slug)->first();
+            $again = (($exist!==null)&&($exist->id!=$this->id));
+            $seed .= ' New';
+        } while ($again);
         return parent::save();
     }
 

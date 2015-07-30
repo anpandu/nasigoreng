@@ -11,6 +11,7 @@
 	        <thead>
 	                <th>ID</th>
 	                <th>Title</th>
+	                <th>Slug</th>
 	                <th>Description</th>
 	                <th>Category</th>
 	                <th>Tag</th>
@@ -60,6 +61,7 @@
 	        "columns": [
 	            { "data": "id" },
 	            { "data": "title" },
+	            { "data": "slug" },
 	            { "data": "description" },
 	            { "data": "category" },
 	            { "data": "tags" },

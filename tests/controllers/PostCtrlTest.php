@@ -67,7 +67,7 @@ class PostCtrlTest extends TestCase {
 	public function testShow()
 	{
 		// tes pemanggilan show sukses
-		$response = $this->call('GET', '/'.self::$endpoint.'/'.$this->obj->id);
+		$response = $this->call('GET', '/'.self::$endpoint.'/'.$this->obj->slug);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
 
@@ -77,7 +77,7 @@ class PostCtrlTest extends TestCase {
 
 		// tes tak ada yang dicari
 		$response = $this->call('GET', '/'.self::$endpoint.'/696969');
-		$this->assertEquals(500, $response->getStatusCode());
+		$this->assertEquals(404, $response->getStatusCode());
 	}
 
 	public function testStore()
@@ -89,7 +89,7 @@ class PostCtrlTest extends TestCase {
 		$result = $response->getOriginalContent()->toArray();
 		foreach ($params as $key => $val) {
 			$this->assertArrayHasKey($key, $result);
-			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at'))
+			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at')&&($key!='slug'))
 				$this->assertEquals($val, $result[$key]);
 		}
 	}
@@ -112,14 +112,14 @@ class PostCtrlTest extends TestCase {
 		unset($params['tags']);
 		foreach ($params as $key => $val) {
 			$this->assertArrayHasKey($key, $result);
-			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at'))
+			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at')&&($key!='slug'))
 				$this->assertEquals($val, $result[$key]);
 		}		
 		$this->assertEquals(3, count($result['tags']));
 
 		// tes tak ada yang dicari
 		$response = $this->call('GET', '/'.self::$endpoint.'/696969', $params);
-		$this->assertEquals(500, $response->getStatusCode());
+		$this->assertEquals(404, $response->getStatusCode());
 	}
 
 	public function testDelete()
@@ -132,7 +132,7 @@ class PostCtrlTest extends TestCase {
 
 		// tes apakah sudah terdelete
 		$response = $this->call('GET', '/'.self::$endpoint.'/'.$obj2->id);
-		$this->assertEquals(500, $response->getStatusCode());
+		$this->assertEquals(404, $response->getStatusCode());
 
 		// tes apakah hasil return adalah yang sesuai
 		foreach ($obj2->attributesToArray() as $key => $val) {

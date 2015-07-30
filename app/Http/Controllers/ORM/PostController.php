@@ -5,12 +5,13 @@ namespace App\Http\Controllers\ORM;
 use Request;
 use Exception;
 
+use App\Http\Controllers\Controller;
 use App\Models\ORM\Post;
 use App\Models\ORM\Category;
 use App\Models\ORM\Tag;
 
-use App\Http\Controllers\Controller;
 use App\Exceptions\CrudException;
+use App\Exceptions\NotFoundException;
 
 class PostController extends Controller {
 
@@ -56,16 +57,16 @@ class PostController extends Controller {
     /**
     * Display the specified Post.
     *
-    * @param  int  $id
+    * @param  string  $slug
     * @return Response
     */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', '=', $slug)->first();
         if ($post) {
             return $post; 
         } else
-        throw new CrudException('post:show');
+        throw new NotFoundException('\'Post\' not found.');
     }
 
     /**
