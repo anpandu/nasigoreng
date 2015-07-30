@@ -48,7 +48,6 @@ class PostController extends Controller {
 
         if ($post->save()) {
             $post->tags()->attach($tags);
-            $params = Request::all();
             return $post;
         } else
         throw new CrudException('post:store');

@@ -3,6 +3,7 @@
 namespace App\Models\ORM;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -18,7 +19,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'content', 'description', 'header_image', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'content', 'description', 'header_image', 'category_id', 'user_id'];
 
     public function category()
     {
@@ -46,6 +47,12 @@ class Post extends Model
         $result['category'] = $this->getCategory()->simpleAttributes();
         $result['tags'] = $this->tags()->get()->map(function($x){return $x->simpleAttributes();})->toArray();
         return $result;
+    }
+
+    public function save(array $options = [])
+    {
+        $this->slug = Str::slug($this->title);
+        return parent::save();
     }
 
 }

@@ -29,8 +29,7 @@ class PostCtrlTest extends TestCase {
 		$tag = Tag::create(['title' => $slug, 'slug' => $slug]);
 		$user = User::create(['name' => 'user', 'email' => rand(0,10000), 'password' => 'user', 'picture' => 'user']);
 		$obj = new Post;
-		$obj->title = 'title';
-		$obj->slug = 'slug';
+		$obj->title = 'The Title';
 		$obj->content = 'content';
 		$obj->description = 'description';
 		$obj->header_image = 'header_image';
@@ -88,7 +87,6 @@ class PostCtrlTest extends TestCase {
 		$response = $this->call('POST', '/'.self::$endpoint, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
-
 		foreach ($params as $key => $val) {
 			$this->assertArrayHasKey($key, $result);
 			if (isset($result[$key])&&($key!='created_at')&&($key!='updated_at'))

@@ -29,7 +29,7 @@ class PostTest extends TestCase {
 		$user = User::create(['name' => 'user', 'email' => 'user', 'password' => 'user', 'picture' => 'user']);
 
 		$obj = new Post;
-		$obj->title = 'title';
+		$obj->title = 'Title Unimportant';
 		$obj->content = 'content';
 		$obj->description = 'description';
 		$obj->slug = 'slug';
@@ -47,6 +47,7 @@ class PostTest extends TestCase {
 		
 		$this->assertArrayHasKey('category', $obj_2->toArray());
 		$this->assertArrayHasKey('tags', $obj_2->toArray());
+		$this->assertEquals('title-unimportant', $obj_2->slug);
 
 		$cat_2 = $obj_2->getCategory();
 		$this->assertEquals($cat->id, $cat_2->id);
