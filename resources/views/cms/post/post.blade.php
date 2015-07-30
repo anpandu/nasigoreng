@@ -11,6 +11,7 @@
 	        <thead>
 	                <th>ID</th>
 	                <th>Title</th>
+	                <th>Description</th>
 	                <th>Category</th>
 	                <th>Tag</th>
 	                <th>Published</th>
@@ -59,6 +60,7 @@
 	        "columns": [
 	            { "data": "id" },
 	            { "data": "title" },
+	            { "data": "description" },
 	            { "data": "category" },
 	            { "data": "tags" },
 	            { "data": "created_at" },

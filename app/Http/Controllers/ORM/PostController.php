@@ -42,8 +42,8 @@ class PostController extends Controller {
     */
     public function store()
     {
-        $post = new Post(Request::all());
         $params = Request::all();
+        $post = new Post($params);
         $tags = isset($params['tags']) ? $params['tags'] : [];
 
         if ($post->save()) {

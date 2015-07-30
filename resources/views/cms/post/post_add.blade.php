@@ -19,9 +19,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_slug" class="col-sm-2 control-label">Slug</label>
+				<label for="input_slug" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-10">
-					<input name="slug" type="text" class="form-control" id="input_slug" placeholder="Slug" value="">
+					<textarea name="description" id="input_description" placeholder="Description" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group">

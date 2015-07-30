@@ -32,6 +32,7 @@ class PostCtrlTest extends TestCase {
 		$obj->title = 'title';
 		$obj->slug = 'slug';
 		$obj->content = 'content';
+		$obj->description = 'description';
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
 		$obj->user_id = $user->id;

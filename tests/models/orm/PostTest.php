@@ -31,6 +31,7 @@ class PostTest extends TestCase {
 		$obj = new Post;
 		$obj->title = 'title';
 		$obj->content = 'content';
+		$obj->description = 'description';
 		$obj->slug = 'slug';
 		$obj->header_image = 'header_image';
 		$obj->category_id = $cat->id;
