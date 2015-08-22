@@ -39,7 +39,7 @@ Route::group(['namespace' => 'ORM'], function() {
 
 Route::group(['namespace' => 'CMS', 'prefix' => 'cms'], function()
 {
-	Route::get('/', function(){ return redirect('/dashboard');});
+	Route::get('/', function(){ return redirect('/cms/dashboard');});
 
 	Route::group(['middleware' => 'auth'], function()
 	{
