@@ -15,7 +15,7 @@
     <link href="{{asset('blog/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('blog/css/clean-blog.css')}}" rel="stylesheet">
+    <link href="{{asset('blog/css/clean-blog.css?v=1')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
