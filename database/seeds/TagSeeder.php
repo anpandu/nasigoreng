@@ -13,16 +13,16 @@ class TagSeeder extends Seeder
     public function run()
     {
         Tag::create(array(
-            'title' => 'aneh',
-            'slug' => 'aneh'
+            'title' => 'funny',
+            'slug' => 'funny'
         ));
         Tag::create(array(
-            'title' => 'biasa',
-            'slug' => 'biasa'
+            'title' => 'sad',
+            'slug' => 'sad'
         ));
         Tag::create(array(
-            'title' => 'nevermind',
-            'slug' => 'nevermind'
+            'title' => 'heartwarming',
+            'slug' => 'heartwarming'
         ));
     }
 }

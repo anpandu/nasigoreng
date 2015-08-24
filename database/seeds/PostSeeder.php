@@ -15,35 +15,13 @@ class PostSeeder extends Seeder
         // $this->command->info(Post::all()->count());
 
         $p = Post::create(array(
-            'title' => 'Postingan #0',
-            'description' => '-',
-            'category_id' => '1',
-            'user_id' => '1'
-        ));
-        $p->tags()->attach([1,2,3]);
-
-        $p = Post::create(array(
-            'title' => 'Postingan #1',
-            'description' => '-',
-            'category_id' => '1',
-            'user_id' => '1'
-        ));
-        $p->tags()->attach([1]);
-
-        $p = Post::create(array(
-            'title' => 'Postingan #2',
+            'title' => 'This is My First Post',
             'description' => '-',
             'category_id' => '2',
-            'user_id' => '1'
+            'user_id' => '1',
+            'content' => 'Hello, this is my first post.',
+            'header_image' => asset("blog/img/post-sample-image.jpg")
         ));
-        $p->tags()->attach([2]);
-
-        $p = Post::create(array(
-            'title' => 'Postingan #3',
-            'description' => '-',
-            'category_id' => '3',
-            'user_id' => '1'
-        ));
-        $p->tags()->attach([3]);
+        $p->tags()->attach([1,2,3]);
     }
 }
