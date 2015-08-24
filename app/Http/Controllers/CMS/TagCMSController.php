@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 
 class TagCMSController extends Controller {
 
+	public static $endpoint = 'api/tag';
+
 	/**
 	 * Halaman CMS Tag
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('cms.tag.tag');
+		$data = [
+			'endpoint' => self::$endpoint
+		];
+		return view('cms.tag.tag')->with($data);
 	}
 
 	/**
@@ -22,7 +27,7 @@ class TagCMSController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$url = url('/tag/'.$id);
+		$url = url(self::$endpoint.'/'.$id);
 		$tag = json_decode(@file_get_contents($url));
 
 		$data = [
@@ -38,7 +43,7 @@ class TagCMSController extends Controller {
 	public function update($id)
 	{
 		$params = Request::all();
-		$url = url('/tag/'.$params['id']);
+		$url = url(self::$endpoint.'/'.$params['id']);
 		$this->put($url, $params);
 		
 		return redirect('cms/tag');

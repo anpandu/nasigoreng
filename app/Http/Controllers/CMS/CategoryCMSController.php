@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 
 class CategoryCMSController extends Controller {
 
+	public static $endpoint = 'api/category';
+
 	/**
 	 * Halaman CMS Category
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('cms.category.category');
+		$data = [
+			'endpoint' => self::$endpoint
+		];
+		return view('cms.category.category')->with($data);
 	}
 
 	/**
@@ -22,7 +27,7 @@ class CategoryCMSController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$url = url('/category/'.$id);
+		$url = url(self::$endpoint.'/'.$id);
 		$category = json_decode(@file_get_contents($url));
 
 		$data = [
@@ -38,7 +43,7 @@ class CategoryCMSController extends Controller {
 	public function update($id)
 	{
 		$params = Request::all();
-		$url = url('/category/'.$params['id']);
+		$url = url(self::$endpoint.'/'.$params['id']);
 		$this->put($url, $params);
 		
 		return redirect('cms/category');

@@ -7,7 +7,7 @@
 		<h3 class="box-title">Add Tag</h3>
 	</div>
 	<div class="box-body">
-		<form method="POST" action="{{url('/tag')}}" class="form-horizontal" id="form_tag">
+		<form method="POST" action="{{url($endpoint)}}" class="form-horizontal" id="form_tag">
 			<div class="input-group margin">
                 <input name="title" id="input_title" type="text" class="form-control">
                 <span class="input-group-btn">
@@ -39,7 +39,7 @@
 	$(document).ready(function() {
 	    var table = $('#dt').dataTable( {
 	    	"ajax": {
-				"url": "{{url('tag')}}",
+				"url": "{{url($endpoint)}}",
 				"dataSrc": function ( json ) {
 
 					res = json.map( function(item) {
@@ -65,7 +65,7 @@
 	        	table = this;
 		    	$(".button_delete").click(function() {
 		    		var item_id = $(this).prop('id');
-		    		var delete_url = "{{url('tag')}}/" + item_id;
+		    		var delete_url = "{{url($endpoint)}}/" + item_id;
 				 	$.ajax({
 			            url: delete_url,
 			            type: 'DELETE',

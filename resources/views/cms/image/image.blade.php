@@ -10,7 +10,7 @@
 
 		<div id="error_message" class="alert alert-danger" style="display:none"></div>
 
-		<form method="POST" action="{{url('/image')}}" class="form-horizontal" id="form_image" enctype="multipart/form-data">
+		<form method="POST" action="{{url($endpoint)}}" class="form-horizontal" id="form_image" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="input_title" class="col-sm-2 control-label">Title</label>
 				<div class="col-sm-10">
@@ -60,7 +60,7 @@
 	$(document).ready(function() {
 	    var table = $('#dt').dataTable( {
 	    	"ajax": {
-				"url": "{{url('image')}}",
+				"url": "{{url($endpoint)}}",
 				"dataSrc": function ( json ) {
 
 					res = json.map( function(item) {
@@ -89,7 +89,7 @@
 	        	table = this;
 		    	$(".button_delete").click(function() {
 		    		var item_id = $(this).prop('id');
-		    		var delete_url = "{{url('image')}}/" + item_id;
+		    		var delete_url = "{{url($endpoint)}}/" + item_id;
 				 	$.ajax({
 			            url: delete_url,
 			            type: 'DELETE',

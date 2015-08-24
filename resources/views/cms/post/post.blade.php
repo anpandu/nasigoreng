@@ -72,7 +72,7 @@
 	        	table = this;
 		    	$(".button_delete").click(function() {
 		    		var item_id = $(this).prop('id');
-		    		var delete_url = "{{url('post')}}/" + item_id;
+		    		var delete_url = "{{url($endpoint)}}/" + item_id;
 				 	$.ajax({
 			            url: delete_url,
 			            type: 'DELETE',

@@ -8,6 +8,8 @@ use Auth;
 
 class PostCMSController extends Controller {
 
+	public static $endpoint = 'api/post';
+
 	/**
 	 * Halaman CMS Post
 	 * @return Response
@@ -15,7 +17,7 @@ class PostCMSController extends Controller {
 	public function index()
 	{
 		$data = [
-			'endpoint' => 'post'
+			'endpoint' => self::$endpoint
 		];
 		return view('cms.post.post')->with($data);
 	}
@@ -27,7 +29,7 @@ class PostCMSController extends Controller {
 	public function category($slug)
 	{
 		$data = [
-			'endpoint' => 'post/category/' . $slug
+			'endpoint' => self::$endpoint.'/category/'.$slug
 		];
 		return view('cms.post.post')->with($data);
 	}
@@ -39,7 +41,7 @@ class PostCMSController extends Controller {
 	public function tag($slug)
 	{
 		$data = [
-			'endpoint' => 'post/tag/' . $slug
+			'endpoint' => self::$endpoint.'/tag/'.$slug
 		];
 		return view('cms.post.post')->with($data);
 	}
@@ -50,8 +52,8 @@ class PostCMSController extends Controller {
 	 */
 	public function add()
 	{
-		$tags = json_decode(@file_get_contents(url('/tag')));
-		$categories = json_decode(@file_get_contents(url('/category')));
+		$tags = json_decode(@file_get_contents(url('api/tag')));
+		$categories = json_decode(@file_get_contents(url('api/category')));
 
 		$data = [
 			'user_id' => Auth::user()->id, 
@@ -67,17 +69,17 @@ class PostCMSController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$url = url('/post/'.$id);
+		$url = url(self::$endpoint.'/'.$id);
 		$post = json_decode(@file_get_contents($url));
 		$available_tag_ids = array_map(function($x){return $x->id;}, $post->tags);
 
-		$tags = json_decode(@file_get_contents(url('/tag')));
+		$tags = json_decode(@file_get_contents(url('api/tag')));
 		$tags = array_map(function ($x) use ($available_tag_ids) {
 			$x->available = in_array($x->id, $available_tag_ids);
 			return $x;
 		}, $tags);
 
-		$categories = json_decode(@file_get_contents(url('/category')));
+		$categories = json_decode(@file_get_contents(url('api/category')));
 		$categories = array_map(function ($x) use ($post) {
 			$x->available = $x->id == $post->category_id;
 			return $x;
@@ -99,7 +101,7 @@ class PostCMSController extends Controller {
 	{
 		$params = Request::all();
 		unset($params['_wysihtml5_mode']);
-		$url = url('/post/');
+		$url = url(self::$endpoint.'/');
 		$this->pos($url, $params);
 		
 		return redirect('cms/post');
@@ -113,7 +115,7 @@ class PostCMSController extends Controller {
 	{
 		$params = Request::all();
 		unset($params['_wysihtml5_mode']);
-		$url = url('/post/'.$params['id']);
+		$url = url(self::$endpoint.'/'.$params['id']);
 		$this->put($url, $params);
 		
 		return redirect('cms/post');

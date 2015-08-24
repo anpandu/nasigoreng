@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 
 class ImageCMSController extends Controller {
 
+	public static $endpoint = 'api/image';
+
 	/**
 	 * Halaman CMS Image
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('cms.image.image');
+		$data = [
+			'endpoint' => self::$endpoint
+		];
+		return view('cms.image.image')->with($data);
 	}
 
 	/**
@@ -22,7 +27,7 @@ class ImageCMSController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$url = url('/image/'.$id);
+		$url = url(self::$endpoint.'/'.$id);
 		$image = json_decode(@file_get_contents($url));
 
 		$data = [
@@ -38,7 +43,7 @@ class ImageCMSController extends Controller {
 	public function update($id)
 	{
 		$params = Request::all();
-		$url = url('/image/'.$params['id']);
+		$url = url(self::$endpoint.'/'.$params['id']);
 		$this->put($url, $params);
 		
 		return redirect('cms/image');

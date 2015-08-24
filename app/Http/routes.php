@@ -26,7 +26,7 @@ Route::controllers([
 ]);
 
 
-Route::group(['namespace' => 'ORM'], function() {
+Route::group(['namespace' => 'ORM', 'prefix' => 'api'], function() {
 
 	Route::resource('post', 'PostController');
 	Route::get('post/category/{slug}', 'PostController@category');
