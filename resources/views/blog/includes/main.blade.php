@@ -12,10 +12,10 @@
     <title>Nasi Goreng</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('blog/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="blog/css/clean-blog.css" rel="stylesheet">
+    <link href="{{asset('blog/css/clean-blog.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -43,13 +43,13 @@
     @include('blog.includes.footer')
 
     <!-- jQuery -->
-    <script src="blog/js/jquery.js"></script>
+    <script src="{{asset('blog/js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="blog/js/bootstrap.min.js"></script>
+    <script src="{{asset('blog/js/bootstrap.min.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="blog/js/clean-blog.min.js"></script>
+    <script src="{{asset('blog/js/clean-blog.min.js')}}"></script>
 
 </body>
 
