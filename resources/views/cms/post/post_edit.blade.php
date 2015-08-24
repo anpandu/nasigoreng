@@ -10,7 +10,7 @@
 		<h3 class="box-title">Edit Post</h3>
 	</div>
 	<div class="box-body">
-		<form method="POST" action="{{url('/cms/post/update/'.$post->id)}}" class="form-horizontal" id="form_role">
+		<form method="POST" action="{{url('/cms/post/update/'.$post->slug)}}" class="form-horizontal" id="form_role">
 			<input type="hidden" name="id" value="{{$post->id}}"/>
 			<div class="form-group">
 				<label for="input_title" class="col-sm-2 control-label">Title</label>
