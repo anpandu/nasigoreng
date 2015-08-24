@@ -34,9 +34,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            return redirect('/cms/dashboard');
-        }
+        // if ($this->auth->check()) {
+        //     return redirect('/cms/dashboard');
+        // }
 
         return $next($request);
     }
