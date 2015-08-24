@@ -13,6 +13,11 @@
 
 
 Route::get('/', 'WelcomeController@index');
+Route::get('about', 'WelcomeController@about');
+Route::get('contact', 'WelcomeController@contact');
+
+
+
 Route::get('home', function(){ return redirect('/cms/dashboard');});
 
 Route::controllers([

@@ -24,13 +24,33 @@ class WelcomeController extends Controller {
 	}
 
 	/**
-	 * Show the application welcome screen to the user.
+	 * Show the main page.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('welcome');
+		return view('blog.index');
+	}
+
+	/**
+	 * Show the about page.
+	 *
+	 * @return Response
+	 */
+	public function about()
+	{
+		return view('blog.about');
+	}
+
+	/**
+	 * Show the contact page.
+	 *
+	 * @return Response
+	 */
+	public function contact()
+	{
+		return view('blog.contact');
 	}
 
 }
