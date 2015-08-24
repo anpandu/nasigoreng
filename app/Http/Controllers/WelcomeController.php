@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\ORM\Post;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +32,11 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('blog.index');
+		$posts = Post::all()->toArray();
+		$data = [
+			'posts' => $posts
+		];
+		return view('blog.index')->with($data);
 	}
 
 	/**
