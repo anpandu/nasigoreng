@@ -32,7 +32,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		$posts = Post::all()->toArray();
+		$posts = Post::all()->sortByDesc('created_at')->toArray();
 		$data = [
 			'posts' => $posts
 		];

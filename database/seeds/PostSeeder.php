@@ -16,11 +16,11 @@ class PostSeeder extends Seeder
 
         $p = Post::create(array(
             'title' => 'This is My First Post',
-            'description' => '-',
+            'description' => 'This is my first post yo.',
             'category_id' => '2',
             'user_id' => '1',
-            'content' => 'Hello, this is my first post.',
-            'header_image' => asset("blog/img/post-sample-image.jpg")
+            'content' => 'Hello, this is my first post. So long and good night.',
+            'header_image' => 'blog/img/post-sample-image.jpg'
         ));
         $p->tags()->attach([1,2,3]);
     }

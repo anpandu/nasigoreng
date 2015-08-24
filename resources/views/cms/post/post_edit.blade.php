@@ -10,7 +10,7 @@
 		<h3 class="box-title">Edit Post</h3>
 	</div>
 	<div class="box-body">
-		<form method="POST" action="{{url('/cms/post/update/'.$post->slug)}}" class="form-horizontal" id="form_role">
+		<form method="POST" action="{{url('/cms/post/update/'.$post->id)}}" class="form-horizontal" id="form_role">
 			<input type="hidden" name="id" value="{{$post->id}}"/>
 			<div class="form-group">
 				<label for="input_title" class="col-sm-2 control-label">Title</label>
@@ -19,19 +19,19 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Slug</label>
+				<label for="input_slug" class="col-sm-2 control-label">Slug</label>
 				<div class="col-sm-10">
 					<input name="slug" type="text" class="form-control" id="input_slug" placeholder="Slug" value="{{$post->slug}}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Image</label>
+				<label for="input_header_image" class="col-sm-2 control-label">Image</label>
 				<div class="col-sm-10">
 					<input name="header_image" type="text" class="form-control" id="input_header_image" placeholder="Image" value="{{$post->header_image}}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Categories</label>
+				<label for="input_category" class="col-sm-2 control-label">Categories</label>
 				<div class="col-sm-10">
 					<select name="category_id" class="form-control">
 						@foreach ($categories as $category)
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Tags</label>
+				<label for="input_tag" class="col-sm-2 control-label">Tags</label>
 				<div class="col-sm-10">
 					<div class="checkbox">
 						@foreach ($tags as $tag)
@@ -54,7 +54,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="input_title" class="col-sm-2 control-label">Content</label>
+				<label for="input_description" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-10">
+					<textarea name="description" id="input_description" placeholder="Description" class="form-control" rows="5">{{$post->description}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input_content" class="col-sm-2 control-label">Content</label>
 				<div class="col-sm-10">
 					<textarea name="content" id="input_content" placeholder="Content" class="form-control" rows="20">{{$post->content}}</textarea>
 				</div>

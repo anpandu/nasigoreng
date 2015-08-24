@@ -150,6 +150,18 @@ hr.small {
   padding: 100px 0 50px;
   color: white;
 }
+.post-header-preview {
+  height: 300px;
+  background-color: #808080;
+  background: no-repeat center center;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading,
   .intro-header .post-heading,

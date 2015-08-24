@@ -26,6 +26,11 @@ class Post extends Model
         return $this->belongsTo('App\Models\ORM\Category');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\ORM\User');
+    }
+
     public function getCategory()
     {
         return $this->category()->get()->first();
@@ -46,6 +51,7 @@ class Post extends Model
         $result = parent::toArray();
         $result['category'] = $this->getCategory()->simpleAttributes();
         $result['tags'] = $this->tags()->get()->map(function($x){return $x->simpleAttributes();})->toArray();
+        $result['user'] = $this->user()->first()->toArray();
         return $result;
     }
 

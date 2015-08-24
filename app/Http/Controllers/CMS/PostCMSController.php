@@ -98,6 +98,7 @@ class PostCMSController extends Controller {
 	public function store()
 	{
 		$params = Request::all();
+		unset($params['_wysihtml5_mode']);
 		$url = url('/post/');
 		$this->pos($url, $params);
 		
@@ -111,6 +112,7 @@ class PostCMSController extends Controller {
 	public function update($id)
 	{
 		$params = Request::all();
+		unset($params['_wysihtml5_mode']);
 		$url = url('/post/'.$params['id']);
 		$this->put($url, $params);
 		

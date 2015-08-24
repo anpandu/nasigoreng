@@ -45,7 +45,9 @@ class PostTest extends TestCase {
 		
 		$this->assertArrayHasKey('category', $obj_2->toArray());
 		$this->assertArrayHasKey('tags', $obj_2->toArray());
+		$this->assertArrayHasKey('user', $obj_2->toArray());
 		$this->assertEquals('title-unimportant', $obj_2->slug);
+		$this->assertEquals($user->name, $obj_2->toArray()['user']['name']);
 
 		$cat_2 = $obj_2->getCategory();
 		$this->assertEquals($cat->id, $cat_2->id);
