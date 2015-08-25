@@ -8,7 +8,7 @@ use App\Models\ORM\User;
 class PostCtrlTest extends TestCase {
 
 	private $obj;
-	private static $endpoint = 'post';
+	private static $endpoint = 'api/post';
 
 	public function setUp() 
 	{

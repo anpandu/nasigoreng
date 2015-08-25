@@ -5,7 +5,7 @@ use App\Models\ORM\Image;
 class ImageCtrlTest extends TestCase {
 
 	private $obj;
-	private static $endpoint = 'image';
+	private static $endpoint = 'api/image';
 
 	public function setUp() 
 	{

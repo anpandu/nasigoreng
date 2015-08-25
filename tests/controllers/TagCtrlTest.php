@@ -8,7 +8,7 @@ use App\Models\ORM\User;
 class TagCtrlTest extends TestCase {
 
 	private $obj;
-	private static $endpoint = 'tag';
+	private static $endpoint = 'api/tag';
 
 	public function setUp() 
 	{
@@ -73,6 +73,8 @@ class TagCtrlTest extends TestCase {
 	{
 		// tes pemanggilan store sukses
 		$params = $this->setUpParams();
+		$params['title'] = 'some category';
+		$params['slug'] = 'some-category';
 		$response = $this->call('POST', '/'.self::$endpoint, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
@@ -88,7 +90,8 @@ class TagCtrlTest extends TestCase {
 	{
 		// tes pemanggilan update sukses
 		$params = $this->setUpParams();
-		$params['id'] = $this->obj->id.'000';
+		$params['title'] = 'some category';
+		$params['slug'] = 'some-category';
 		$response = $this->call('PUT', '/'.self::$endpoint.'/'.$this->obj->id, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();

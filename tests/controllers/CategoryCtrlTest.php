@@ -7,7 +7,7 @@ use App\Models\ORM\User;
 class CategoryCtrlTest extends TestCase {
 
 	private $obj;
-	private static $endpoint = 'category';
+	private static $endpoint = 'api/category';
 
 	public function setUp() 
 	{
