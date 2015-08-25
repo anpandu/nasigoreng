@@ -28,6 +28,7 @@
 	        <thead>
 	                <th>ID</th>
 	                <th>Title</th>
+	                <th>Slug</th>
 	                <th>Tools</th>
 	        </thead>
 	    </table>
@@ -59,6 +60,7 @@
 	        "columns": [
 	            { "data": "id" },
 	            { "data": "title" },
+	            { "data": "slug" },
 	            { "data": "tools" }
 	        ],
 	        "fnInfoCallback": function(oSettings, json) {
