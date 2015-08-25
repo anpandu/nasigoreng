@@ -73,8 +73,8 @@ class TagCtrlTest extends TestCase {
 	{
 		// tes pemanggilan store sukses
 		$params = $this->setUpParams();
-		$params['title'] = 'some category';
-		$params['slug'] = 'some-category';
+		$params['title'] = 'some tag';
+		$params['slug'] = 'some-tag';
 		$response = $this->call('POST', '/'.self::$endpoint, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
@@ -90,8 +90,8 @@ class TagCtrlTest extends TestCase {
 	{
 		// tes pemanggilan update sukses
 		$params = $this->setUpParams();
-		$params['title'] = 'some category';
-		$params['slug'] = 'some-category';
+		$params['title'] = 'some tag';
+		$params['slug'] = 'some-tag';
 		$response = $this->call('PUT', '/'.self::$endpoint.'/'.$this->obj->id, $params);
 		$this->assertEquals(200, $response->getStatusCode());
 		$result = $response->getOriginalContent()->toArray();
