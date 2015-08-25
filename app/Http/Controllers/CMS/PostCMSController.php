@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 
 
-class PostCMSController extends Controller {
+class PostCMSController extends BaseCMSController {
 
 	public static $endpoint = 'api/post';
 
@@ -102,7 +102,7 @@ class PostCMSController extends Controller {
 		$params = Request::all();
 		unset($params['_wysihtml5_mode']);
 		$url = url(self::$endpoint.'/');
-		$this->pos($url, $params);
+		$this->_post($url, $params);
 		
 		return redirect('cms/post');
 	}
@@ -116,37 +116,9 @@ class PostCMSController extends Controller {
 		$params = Request::all();
 		unset($params['_wysihtml5_mode']);
 		$url = url(self::$endpoint.'/'.$params['id']);
-		$this->put($url, $params);
+		$this->_put($url, $params);
 		
 		return redirect('cms/post');
-	}
-
-	public function pos($url, $fields)
-	{
-	    $post_field_string = http_build_query($fields, '', '&');
-	    $ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field_string);
-		$response = curl_exec($ch);
-		curl_close ($ch);
-	    return $response;
-	}
-
-	public function put($url, $fields)
-	{
-	    $post_field_string = http_build_query($fields, '', '&');
-	    $ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field_string);
-		$response = curl_exec($ch);
-		curl_close ($ch);
-	    return $response;
 	}
 
 }
