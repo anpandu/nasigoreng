@@ -68,7 +68,6 @@ class PostTest extends TestCase {
 		$obj_3->category_id = $cat->id;
 		$obj_3->user_id = $user->id;
 		$saved = $obj_3->save();
-		$saved = $obj_3->save();
 		$this->assertTrue($saved);
 		$this->assertEquals('title-unimportant-new-new', $obj_3->slug);
 	}

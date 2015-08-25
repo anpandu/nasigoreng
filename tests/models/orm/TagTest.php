@@ -26,8 +26,7 @@ class TagTest extends TestCase {
 	public function testAdd()
 	{
 		$obj = new Tag;
-		$obj->title = 'title';
-		$obj->slug = 'slug';
+		$obj->title = 'Title Unimportant';
 		$saved = $obj->save();
 
 		$this->assertTrue($saved);
@@ -36,6 +35,20 @@ class TagTest extends TestCase {
 		if ($obj_2 !== null) {
 			$this->assertEquals($obj, $obj_2);
 		}
+
+		// testing slug already exist
+		$obj_3 = new Tag;
+		$obj_3->title = 'Title Unimportant';
+		$saved = $obj_3->save();
+		$this->assertTrue($saved);
+		$this->assertEquals('title-unimportant-new', $obj_3->slug);
+
+		// testing slug already exist #2
+		$obj_3 = new Tag;
+		$obj_3->title = 'Title Unimportant';
+		$saved = $obj_3->save();
+		$this->assertTrue($saved);
+		$this->assertEquals('title-unimportant-new-new', $obj_3->slug);
 	}
 
 	/**
